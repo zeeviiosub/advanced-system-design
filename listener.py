@@ -7,13 +7,18 @@ class Listener:
         self.host = host
         self.backlog = backlog
         self.reuseaddr = reuseaddr
+    
     def __repr__(self):
-        return f"Listener(port={self.port}, host='{self.host}', backlog={self.backlog}, reuseaddr={self.reuseaddr})"
+        return f"Listener(port={self.port}, host='{self.host}'," +
+            f"backlog={self.backlog}, reuseaddr={self.reuseaddr})"
+    
     def __enter__(self):
         self.start()
         return self
+    
     def __exit__(self, x, y, z):
         self.stop()
+    
     def start(self):
         import socket
         self.server = socket.socket()
@@ -21,7 +26,9 @@ class Listener:
             self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server.bind((self.host, self.port))
         self.server.listen(self.backlog)
+    
     def stop(self):
         self.server.close()
+    
     def accept(self):
         return Connection(self.server.accept()[0])
