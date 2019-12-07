@@ -66,7 +66,7 @@ def user(user_id):
         hours, minutes, seconds = time.split('-')
         displayed_time = f'{date} {hours}:{minutes}:{seconds}'
         for thought in open(thoughts_file).read().splitlines():
-            thought_line = _THOUGHT_LINE_HTML.format(time=displayed_time, \
+            thought_line = _THOUGHT_LINE_HTML.format(time=displayed_time,
                                                      thought=thought)
             thought_lines.append(thought_line)
     thoughts = '\n'.join(thought_lines)
