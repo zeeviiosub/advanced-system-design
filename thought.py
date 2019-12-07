@@ -8,8 +8,8 @@ class Thought:
         self.thought = thought
 
     def __repr__(self):
-        return f'Thought(user_id={self.user_id}, timestamp={self.timestamp!r},' +\
-            f'thought="{self.thought}")'
+        return f'Thought(user_id={self.user_id}, ' +\
+            f'timestamp={self.timestamp!r}, thought="{self.thought}")'
 
     def __str__(self):
         return f'[{self.timestamp.strftime("%Y-%m-%d %H:%M:%S")}] ' +\
@@ -29,6 +29,7 @@ class Thought:
 
     def deserialize(data):
         user_id = int.from_bytes(data[0:8], 'little')
-        timestamp = datetime.fromtimestamp(int.from_bytes(data[8:16], 'little'))
+        timestamp = \
+            datetime.fromtimestamp(int.from_bytes(data[8:16], 'little'))
         thought = data[20:].decode('utf8')
         return Thought(user_id, timestamp, thought)
