@@ -17,7 +17,8 @@ def upload(address, user, thought):
         s = socket.socket()
         s.connect(address)
         conn = Connection(s)
-        thought_obj = Thought(user, datetime.fromtimestamp(int(time.time())), thought)
+        thought_obj = \
+            Thought(user, datetime.fromtimestamp(int(time.time())), thought)
         conn.send(thought_obj.serialize())
         return 0
     except Exception as error:
