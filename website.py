@@ -12,6 +12,7 @@ class Website:
     def run(self, address):
         import http.server
         functions = self.functions
+
         class Handler(http.server.BaseHTTPRequestHandler):
             def do_GET(self):
                 import re
