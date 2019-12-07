@@ -16,7 +16,7 @@ class Handler(threading.Thread):
         self.connection = connection
         self.data_dir = data_dir
 
-    def run(self):
+    def run_server(self):
         user_id_bytes = self.connection.receive(8)
         timestamp_bytes = self.connection.receive(8)
         thought_sz_bytes = self.connection.receive(4)
@@ -41,7 +41,7 @@ class Handler(threading.Thread):
 
 
 @cli.command
-def run(address, data):
+def run_server(address, data):
     address = (address.split(':')[0], int(address.split(':')[1]))
     data = pathlib.Path(data)
     lsnr = Listener(address[1], host=address[0])

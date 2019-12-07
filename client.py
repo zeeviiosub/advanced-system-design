@@ -8,7 +8,7 @@ cli = CommandLineInterface()
 
 
 @cli.command
-def upload(address, user, thought):
+def upload_thought(address, user, thought):
     import socket
     import time
     try:
